@@ -1,0 +1,35 @@
+PUBLICAR EN GITHUB PAGES (sin Workers)
+
+CONTENIDO
+- index.html: página que muestra únicamente la captura.
+- captura.png: imagen mostrada.
+- CNAME: dominio personalizado ya configurado.
+- .nojekyll: evita el procesamiento Jekyll; no hace falta compilar nada.
+
+PASOS
+1. Crea un repositorio NUEVO en GitHub, por ejemplo: patear-un-anciano.
+   Con GitHub Free, el repositorio debe ser público para usar Pages.
+2. Sube TODOS los archivos de esta carpeta a la raíz del repositorio
+   (no subas la carpeta contenedora).
+3. Abre Settings > Pages.
+4. En Build and deployment, elige "Deploy from a branch".
+5. Selecciona la rama "main" y la carpeta "/ (root)". Guarda.
+6. En Custom domain, escribe:
+   patear-un-anciano.nexuscollective.app
+   y guarda. El archivo CNAME ya contiene ese dominio.
+7. En el panel DNS de Cloudflare, crea este registro:
+   Type:   CNAME
+   Name:   patear-un-anciano
+   Target: TU-USUARIO-O-ORGANIZACION.github.io
+   Proxy:  DNS only (nube gris)
+   Sustituye el destino por el dominio GitHub Pages de la cuenta que sea
+   propietaria del repositorio. No añadas el nombre del repositorio al destino.
+8. Cuando GitHub valide el dominio y emita el certificado, activa
+   "Enforce HTTPS" en Settings > Pages.
+
+IMPORTANTE
+- Configura primero el dominio personalizado en GitHub Pages y después el DNS.
+- No necesitas Workers, funciones, backend, Supabase ni un workflow propio.
+- La web publicada es pública. En GitHub Free, el repositorio también debe
+  ser público para poder usar Pages.
+- La propagación DNS puede tardar un rato.
